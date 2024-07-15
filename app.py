@@ -10,11 +10,7 @@ if 'experiment_no' not in st.session_state:
 if 'df_experiment_results' not in st.session_state:
     st.session_state['df_experiment_results'] = pd.DataFrame(columns=['no', 'iterations', 'mean'])
 
-
-st.header('Lanzar una moneda')
-
 chart = st.line_chart([0.5])
-
 
 def toss_coin(n): # función que emula el lanzamiento de una moneda
 
@@ -35,10 +31,10 @@ def toss_coin(n): # función que emula el lanzamiento de una moneda
     return mean
 
 
+st.header('Quieres lanzar una moneda?...')
 
-number_of_trials = st.slider('¿Número de intentos?', 1, 1000, 10)
+number_of_trials = st.slider('Cuantos intentos?', 1, 1000, 10)
 start_button = st.button('Ejecutar')
-
 
 if start_button:
     st.write(f'Experimento con {number_of_trials} intentos en curso.')
@@ -55,5 +51,7 @@ if start_button:
     st.session_state['df_experiment_results'] = (
         st.session_state['df_experiment_results'].reset_index(drop=True)
     )
+
+
 
 st.write(st.session_state['df_experiment_results'])
